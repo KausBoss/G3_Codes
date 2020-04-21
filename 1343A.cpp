@@ -12,6 +12,7 @@ int main(){
 	#endif
 	ll t, n;
 	cin>>t;
+	
 	while(t--){
 		cin>>n;
 		for(ll k=2; k<n; k++){
