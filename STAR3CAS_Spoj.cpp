@@ -9,8 +9,7 @@ int MinStep(int *a, int i, int n, bitset<20> vst, int steps){
 		return 0;
 	}
 	//recusive case
-
-
+	
 }
 
 
