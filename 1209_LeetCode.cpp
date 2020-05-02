@@ -3,38 +3,33 @@
 using namespace std;
 #define ll long long
 
-string removeDuplicates(string st, int k) {
-    char c;
-    bool beet;
-    deque<char> s;
-    for(auto x:st){
-    	beet=false;
-    	if(s.empty()){
-    		s.push_back(x);
+string removeDuplicates(string S, int k) {
+    int temp=1;
+    deque<pair<char, int>> d;
+    for(char x:S){
+    	if(!d.empty()){
+    		cout<<d.front().first<<" "<<d.front().second<<" "<<d.back().first<<" "<<d.back().second<<endl;
+    	}
+    	if(d.empty()){
+    		d.push_back(make_pair(x, temp));
     	}
     	else{
-    		if(x!=s.back()){
-    			c=s.back();
-    			s.pop_back();
-    			while(!s.empty() && s.back()==c && k>0){
-    				beet = true;
-    				s.pop_back();
-    			}
-    			if(beet){k--;}
-    			else{s.push_back(c);}
+    		if(x==d.back().first){temp=d.back().second+1;}
+    		else{temp=1;}
+    		d.push_back(make_pair(x, temp));
+    		if(d.back().second==k){
+    			while(temp--){d.pop_back();}
+    			temp=1;
     		}
-    		s.push_back(x);
     	}
-    	cout<<s.front()<<"  "<<s.size()<<"  "<<s.back()<<endl;
     }
     string ans="";
-    while(!s.empty()){
-    	ans += s.front();
-    	s.pop_front();
+    while(!d.empty()){
+    	ans +=d.front().first;
+    	d.pop_front();
     }
     return ans;
 }
-
 
 int main(){
 	ios_base::sync_with_stdio(false);
@@ -43,7 +38,6 @@ int main(){
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 	#endif
-	string s="deeedbbcccbdaa";
-	cout<<s<<endl;
-	cout<<removeDuplicates(s, 3);
+	string s="pbbcggttciiippooaais";
+	cout<<removeDuplicates(s, 2);
 }
