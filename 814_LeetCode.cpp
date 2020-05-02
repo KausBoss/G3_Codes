@@ -10,30 +10,26 @@
  * };
  */
 class Solution {
-public:
-	string s="";
-	void para(TreeNode* t){
-		//base case
-		if(t==NULL){
-			return;
+	bool kato(TreeNode* &root){
+		//base  case
+		if(root==NULL){
+			return false;
 		}
 		//recursive case
-		s += to_string(t->val);
-		if(t->left){
-			s+='(';
-			para(t->left);
-			s+=')';
+		bool left = kato(root->left);
+		bool right = kato(root->right);
+		if(!left){
+			root->left=NULL;
 		}
-		if(t->right){
-			if(!t->left){s+="()";}
-			s+='(';
-			para(t->right);
-			s+=')';
+		if(!right){
+			root->right=NULL;
 		}
-		return;
-	} 
-    string tree2str(TreeNode* t){
-        para(t);
-        return s;
+		return left || right || root->val;
+	}
+public:
+    TreeNode* pruneTree(TreeNode* root) {
+        bool x= kato(root);
+        if(!x){return NULL;}
+        return root;
     }
 };
