@@ -10,8 +10,11 @@ int main(){
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 	#endif
-	std::vector<int> v(5, 10);
+	vector<vector<int>> v{{13,21},{26,115},{100,47},{225,99},{299,141},{444,198},{608,190},{636,157},{647,255},{841,123}};
 	for(auto x:v){
-		cout<<x<<" ";
+		for(auto y:x){
+			cout<<y<<" ";
+		}
+		cout<<endl;
 	}
 }
