@@ -2,7 +2,7 @@
 
 using namespace std;
 #define ll long long
-ll sum[100005]={0};
+ll sum[10000005]={0};
 ll k;
 string a;
 
