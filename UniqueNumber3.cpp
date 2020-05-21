@@ -10,27 +10,24 @@ int main(){
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 	#endif
-	int n;
+	int n, x, bit[32]={0}, ans=0;
 	cin>>n;
-	vector<int> v(n);
-	for(auto &x:v){
+	while(n--){
 		cin>>x;
-	}
-	int xr=0;
-	for(auto x: v){
-		xr ^=x;
-	}
-	xr &=-xr;
-	int x1=0, x2=0;
-	for(auto x:v){
-		if(x&xr){
-			x1 ^= x;
-		}
-		else{
-			x2 ^= x;
+		int pos=0;
+		while(x > 0){
+			if(x&1){
+				bit[pos]++;
+				bit[pos] %= 3;
+			}
+			pos++;
+			x = x>>1;
 		}
 	}
-	if(x1 > x2){ swap(x1, x2);}
-
-	cout<<x1<<" "<<x2;
+	for(int i =0; i<32; i++){
+		if(bit[i]){
+			ans |= (1<<i);
+		}
+	}
+	cout<<ans;
 }
