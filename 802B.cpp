@@ -24,16 +24,28 @@ int main(){
 	}
 	int ans=0;
 	for(int i=0; i<n; i++){
+		for(auto x:m){
+			// cout<<x.first<<" "<<x.second<<endl;
+		}
+		//cout<<"------------------"<<endl;
 		if(m.count(a[i])==0){
 			ans++;
 			if(m.size() == s){
+				for(auto x: m){
+					//cout<<" pehle "<<x.first<<" ka "<<x.second<<" ab ";
+					m[x.first] = *(id[x.first].upper_bound(i));
+					//cout<<x.first<<" "<<x.second<<endl;
+					//cout<<x.second<<endl;
+				}
 				int rem, pos=-1;
 				for(auto x:m){
+					//cout<<x.first<<" "<<x.second<<" "<<pos<<endl;
 					if(x.second > pos){
 						rem = x.first;
 						pos = x.second;
 					}
 				}
+				//cout<<"removing "<<rem<<endl;
 				m.erase(rem);
 			}
 			m[a[i]] = *(id[a[i]].upper_bound(i));
